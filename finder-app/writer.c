@@ -15,12 +15,10 @@ int main(int argc, char* argv[]){
         int fd = open(writefile,O_WRONLY|O_CREAT,0777);
 
         if(fd == -1){
-            printf("fail to open file");
             syslog(LOG_ERR,"File could not be created");
             close(fd);
             return 1;
         } else {
-            printf("success to open file");
             write(fd,writestr,strlen(writestr));
             syslog(LOG_DEBUG,"Writing %s to %s",writestr,writefile);
             close(fd);
